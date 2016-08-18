@@ -1,0 +1,4 @@
+tornado
+feedparser
+google-api-python-client
+python-mpd2

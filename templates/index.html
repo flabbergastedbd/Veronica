@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% end %}
+
+{% block includes %}
+<script type='text/javascript' src='/static/bower/jquery-rss/dist/jquery.rss.min.js'></script>
+<script type='text/javascript' src='/static/bower/moment/moment.js'></script>
+{% end %}
+
+{% block content %}
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="row">
+  <div class="col-lg-9 col-md-4 col-sm-6" data-module-key='news'>News</div>
+  <div class="col-lg-3 col-md-4 col-sm-6" data-module-key='clock'>Clock</div>
+</div>
+<div class="row">
+  <div class="col-lg-8 col-md-6 col-sm-6" data-module-key='mpd'>MPD</div>
+  <div class="col-lg-4 col-md-6 col-sm-6" data-module-key='gmail'>GMail</div>
+</div>
+
+<script>
+var BASE_URL = location.href;
+var V_MODULES = {% raw V_MODULES %};
+
+function loadAllModules() {
+	$.each(V_MODULES, function(key, obj) {
+		var elem = $('[data-module-key="' + key + '"]');
+		if (elem) {
+			var updateFn = function() {
+				$.get(BASE_URL + '?' + $.param({'module': key}), function(data) {
+					$(elem).html(data);
+				});
+			};
+
+			// If element found, first setTimeout and then load
+			setInterval(updateFn, obj.interval * 1000);
+			updateFn();
+		}
+	});
+}
+
+$(document).ready(function() {
+	loadAllModules();
+});
+</script>
+{% end %}

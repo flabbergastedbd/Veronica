@@ -1,0 +1,23 @@
+<div class="card card-inverse card-success text-xs-center">
+  <div class="card-block">
+    <h4 class="card-title feed-title"></h4>
+  </div>
+  <div class="card-footer">
+    <p class="feed-summary"></p>
+  </div>
+</div>
+
+<script>
+var RSS_FEEDS = {% raw feeds %};
+var CHANGE_INTERVAL = 10*1000;  // 10 seconds
+
+function refreshRssFeed(i) {
+  var feed = RSS_FEEDS[i];
+  if (!feed) return;
+  $('.feed-title').html('<i class="fa fa-newspaper-o"></i> ' + feed['title']);
+  $('.feed-summary').text(feed['published'] + ' - ' + feed['summary']);
+  setTimeout(function(){ refreshRssFeed((i+1)%RSS_FEEDS.length); }, CHANGE_INTERVAL);
+}
+
+refreshRssFeed(0);
+</script>

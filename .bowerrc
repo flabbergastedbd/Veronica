@@ -1,0 +1,5 @@
+{
+  "directory": "static/bower",
+  "color": true,
+  "strict-ssl": true
+}

@@ -1,0 +1,24 @@
+{
+  "name": "veronica",
+  "authors": [
+    "tunnelshade <tunnelshade@gmail.com>"
+  ],
+  "description": "Dashboard",
+  "main": "veronica.py",
+  "license": "GPL3",
+  "homepage": "https://blog.tunnelshade.in",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "static/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "v4.0.0-alpha.3",
+    "font-awesome": "^4.6.3",
+    "jquery-rss": "^3.2.1"
+  }
+}
