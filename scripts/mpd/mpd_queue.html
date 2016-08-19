@@ -1,13 +1,12 @@
 <div class="card text-xs-center">
-  <div class="card-header bg-primary">
-    Featured
+  <div class="card-header bg-info">
+    Music
   </div>
   <div class="card-block">
-    <h4 class="card-title">Special title treatment</h4>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-  <div class="card-footer text-muted">
-    2 days ago
+    <table class="table">
+    {% for t in tracks %}
+      <tr {% if current and t['id'] == current['id'] %}class='table-info'{% end %}><td>{{ t['title'] }}</td><td>{{ t['album'] }}</td><td>{{ t['time'] }}</td></tr>
+    {% end %}
+    </table>
   </div>
 </div>

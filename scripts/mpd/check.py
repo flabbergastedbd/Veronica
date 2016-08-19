@@ -8,6 +8,7 @@ MPD_PORT = 6600
 
 import os
 import socket
+import tornado.template
 
 from mpd import MPDClient
 
@@ -21,6 +22,8 @@ try:
     cur_track = client.currentsong()
     client.disconnect()
 
+    for i in range(0, len(all_tracks)):
+        all_tracks[i]['time'] = '%d:%02d' % (int(all_tracks[i]['time'])/60, int(all_tracks[i]['time'])%60)
     with open(os.path.join(ROOT_DIR, 'mpd_queue.html'), 'r') as fp:
         print(tornado.template.Template(fp.read()).generate(tracks=all_tracks, current=cur_track))
 
